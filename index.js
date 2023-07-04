@@ -1,7 +1,7 @@
 const fs = require('fs');
 const inquirer= require('inquirer');
 const {Triangle, Square, Circle} = require('./lib/shapes');
-const setLogo = require('./lib/svg.js')
+const svg = require('./lib/svg.js')
 
 
 //color, shape, and initial prompts for logo
@@ -29,14 +29,33 @@ const prompts = [
   ];
 
 function renderLogo() {
-            inquirer
-            prompts(questions)
-            .then((responce) => {
-                const svg = setLogo;
+    const answers = { text, b_g_colour, font_Colour, shape };
+    const responce =  finalLogo
+
+        let selectedShape;
+          if (shape === 'Triangle') {
+            selectedShape = new Triangle();
+          } else if (shape === 'Square') {
+            selectedShape = new Square();
+          } else {
+            selectedShape = new Circle();
+          }
+
+    selectedShape.setcolor(b_g_colour),
+    shape.setfont(font_Colour),
+    shape.setchar(text),
+    shape.setshape(selectedShape),
+
+    inquirer
+        prompts(answers)
+        .then((responce) => {
+                const setLogo = responce;
+                const svg = setLogo();
                 svg(responce);
-            })
-            fs.writeFile('newLogoDesign.svg', svg, (error) => {
-            if (error) throw error;
+        })
+        
+        fs.writeFile('newLogoDesign.svg', svg, (error) => {
+        if (error) throw error;
 })};
     
 renderLogo();
