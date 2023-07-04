@@ -1,7 +1,7 @@
 const fs = require('fs');
 const inquirer= require('inquirer');
 const {Triangle, Square, Circle} = require('./lib/shapes');
-const file = require('./lib/svg.js')
+const setLogo = require('./lib/svg.js')
 
 
 //color, shape, and initial prompts for logo
@@ -30,11 +30,11 @@ const prompts = [
 
 function renderLogo() {
             inquirer
-            const svg = setLogo();
             prompts(questions)
             .then((responce) => {
-                createLogo(responce);
-              })
+                const svg = setLogo;
+                svg(responce);
+            })
             fs.writeFile('newLogoDesign.svg', svg, (error) => {
             if (error) throw error;
 })};
