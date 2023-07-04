@@ -1,6 +1,6 @@
 const fs = require('fs');
 const inquirer= require('inquirer');
-const {Triangle, Square, Circle} = require('./shapes');
+const {Triangle, Square, Circle} = require('./lib/shapes');
 
 
 //color, shape, and initial prompts for logo
@@ -13,12 +13,12 @@ inquirer.prompt (
     },
     {
         type: "input",
-        name: 'b-g-colour',
+        name: 'b_g_colour',
         message: "What colour would you like your logo background to be?",
     },
     {
         type: "input",
-        name: 'font-colour',
+        name: 'font_Colour',
         message: "What colour would you like your logo initials colour to be?",
     },
     {
@@ -29,9 +29,9 @@ inquirer.prompt (
 ]);
 
 function createLogo() {
-    inquirer.prompt(inqueriers).then((answers) => {
-        const {text, b-g-colour, font-colour, shapes} = answers
-        let shapes;
+    inquirer.prompt(query).then((answers) => {
+        const {text, b_g_colour, font_Colour, shapes} = answers
+        let shape;
         if(shapes === 'triangle') {
             shapes = new Circle();
         } else if(shape === 'square') {
@@ -40,12 +40,15 @@ function createLogo() {
             shape = new Circle();
         }
 
-        shape.setColor(b-g-colour);
+        shape.setColor(b_g_colour);
+        shape.setFont(font_Colour);
+        shape.setChar(text);
 
+        
         fs.writeFile('logo.svg', svg, (error) => {
-            if (error) throw error,
+            if (error) throw error;
         });
-    })
-}
+        
+})};
 
 createLogo();
