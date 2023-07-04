@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/KEINance/LogoMaker/issues"
   },
-  "homepage": "https://github.com/KEINance/LogoMaker#readme"
+  "homepage": "https://github.com/KEINance/LogoMaker#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
 }
